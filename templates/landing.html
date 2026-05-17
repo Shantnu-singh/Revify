@@ -571,31 +571,92 @@
     /* ── FOOTER ──────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 3rem 4rem;
+      padding: 0;
+    }
+    .footer-cta {
+      text-align: center;
+      padding: 4rem 2rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-cta h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .footer-cta p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 420px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 4rem 3rem;
+    }
+    .footer-brand .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .footer-brand .footer-logo span { color: var(--accent); }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 280px;
+      font-weight: 300;
+    }
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+    .footer-col a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-    .footer-logo span { color: var(--accent); }
-    footer p {
-      font-size: 0.78rem;
+    .footer-bottom p {
+      font-size: 0.75rem;
       color: var(--muted);
     }
-    .footer-links {
-      display: flex; gap: 1.5rem;
+    .footer-bottom-links {
+      display: flex; gap: 1.25rem;
       list-style: none;
     }
-    .footer-links a {
-      font-size: 0.78rem;
+    .footer-bottom-links a {
+      font-size: 0.75rem;
       color: var(--muted);
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--text); }
+    .footer-bottom-links a:hover { color: var(--text); }
 
     /* ── ANIMATIONS ──────────────────────────────────── */
     @keyframes fadeUp {
@@ -626,7 +687,19 @@
       .pricing-grid { grid-template-columns: 1fr; }
       .hero-mockup { display: none; }
       .cta-banner { margin: 0 1.5rem; padding: 3rem 1.5rem; }
-      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 2.5rem 1.5rem 2rem;
+      }
+      .footer-brand { grid-column: span 2; margin-bottom: 0.5rem; }
+      .footer-bottom {
+        flex-direction: column; gap: 1rem;
+        text-align: center; padding: 1.25rem 1.5rem;
+      }
+    }
+    @media (max-width: 500px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
     }
   </style>
 </head>
@@ -854,13 +927,56 @@
 
   <!-- ── FOOTER ───────────────────────────────────── -->
   <footer>
-    <div class="footer-logo">Revify<span>.</span></div>
-    <p>© {{ year }} Revify. Built for India's small businesses.</p>
-    <ul class="footer-links">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+    <div class="footer-cta reveal">
+      <h3>Ready to get more reviews?</h3>
+      <p>Set up takes two minutes. No credit card, no technical skills needed.</p>
+      <a href="/register" class="btn btn-primary btn-large">Create your free profile →</a>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Revify<span>.</span></div>
+        <p>AI-assisted reviews for India's small businesses. Turn happy customers into powerful Google reviews with a simple QR code scan.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="/register">Get started</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Refund policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {{ year }} Revify. Built for India's small businesses.</p>
+      <ul class="footer-bottom-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
   </footer>
 
   <script>
