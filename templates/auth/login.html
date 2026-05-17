@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — Revify</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#07080a; --surface:#0e1014; --border:rgba(255,255,255,0.07); --accent:#c8f55a; --text:#e8eaed; --muted:#6b7280; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 3rem 2.5rem; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 2rem; }
+    .logo span { color: var(--accent); }
+    h1 { font-family: 'Instrument Serif', serif; font-size: 1.75rem; margin-bottom: 0.4rem; }
+    p { color: var(--muted); font-size: 0.875rem; margin-bottom: 2rem; font-weight: 300; }
+    label { display: block; font-size: 0.78rem; font-weight: 500; margin-bottom: 0.4rem; }
+    input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; margin-bottom: 1.25rem; outline: none; transition: border-color 0.2s; }
+    input:focus { border-color: rgba(200,245,90,0.4); }
+    button { width: 100%; background: var(--accent); color: #07080a; border: none; border-radius: 10px; padding: 0.85rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 0.5rem; }
+    .sub { text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--muted); }
+    .sub a { color: var(--accent); text-decoration: none; }
+    .flash { background: rgba(200,245,90,0.06); border: 1px solid rgba(200,245,90,0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; color: var(--accent); margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo"><a href="/">Revify<span>.</span></a></div>
+    <h1>Welcome back</h1>
+    <p>Log in to manage your business profile and reviews.</p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="flash">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/login">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="••••••••" required />
+
+      <button type="submit">Log in →</button>
+    </form>
+
+    <p class="sub">Don't have an account? <a href="/register">Sign up free</a></p>
+  </div>
+</body>
+</html>

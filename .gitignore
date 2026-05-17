@@ -1,0 +1,6 @@
+.venv/
+models/
+routes/
+static/
+__pycache__/
+
