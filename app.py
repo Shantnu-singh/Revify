@@ -1,8 +1,11 @@
 from flask import Flask, render_template, redirect, url_for, flash, request, session
 from datetime import datetime
+from werkzeug.security import generate_password_hash
+from database.db import init_db, create_user, get_user_by_email
 
 app = Flask(__name__)
 app.secret_key = "change-this-in-production"  # TODO: use env variable
+init_db()
 
 
 # ─────────────────────────────────────────
@@ -38,9 +41,27 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # TODO: create user in DB
-        flash("Registration coming soon!", "info")
-        return redirect(url_for("landing"))
+        first_name = request.form.get("first_name", "").strip()
+        last_name = request.form.get("last_name", "").strip()
+        email = request.form.get("email", "").strip()
+        business_name = request.form.get("business_name", "").strip()
+        password = request.form.get("password", "")
+
+        if len(password) < 8:
+            flash("Password must be at least 8 characters.", "error")
+            return render_template("auth/register.html")
+
+        if get_user_by_email(email):
+            flash("Email already registered.", "error")
+            return render_template("auth/register.html")
+
+        password_hash = generate_password_hash(password)
+        user_id = create_user(first_name, last_name, email, business_name, password_hash)
+
+        session["user_id"] = user_id
+        session["user_name"] = first_name
+        return redirect(url_for("dashboard_overview"))
+
     return render_template("auth/register.html")
 
 
