@@ -1,0 +1,74 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}My Campaigns{% endblock %}
+{% block topbar_title %}My Campaigns{% endblock %}
+{% block topbar_cta %}
+<a href="/dashboard/campaigns/new" class="btn btn-primary">+ New Campaign</a>
+{% endblock %}
+
+{% block content %}
+<!-- Toolbar -->
+<div class="toolbar">
+  <input type="text" class="form-input" id="campaign-search" placeholder="Search campaigns..." />
+  <select class="form-select" id="tag-filter">
+    <option value="">All Tags</option>
+    <option value="food">food</option>
+    <option value="bakery">bakery</option>
+    <option value="restaurant">restaurant</option>
+    <option value="health">health</option>
+    <option value="clinic">clinic</option>
+    <option value="delhi">delhi</option>
+  </select>
+  <select class="form-select" id="platform-filter">
+    <option value="">All Platforms</option>
+    <option value="Google">Google</option>
+    <option value="Yelp">Yelp</option>
+  </select>
+  <a href="/dashboard/campaigns/new" class="btn btn-primary">+ New Campaign</a>
+</div>
+
+<!-- Campaign Cards -->
+<div class="campaigns-row" id="campaigns-list">
+  {% for c in campaigns %}
+  <div class="campaign-card"
+       data-name="{{ c.name|lower }}"
+       data-platform="{{ c.platform }}"
+       data-tags="{{ c.tags|join(',') }}">
+    <div class="campaign-card-header">
+      <div class="campaign-avatar">{{ c.name[0] }}</div>
+      <div class="campaign-card-name">{{ c.name }}</div>
+      <div class="campaign-card-badges">
+        <span class="badge badge-{{ c.platform|lower }}">{{ c.platform }}</span>
+        <span class="badge badge-{{ c.status|lower }}">{{ c.status }}</span>
+      </div>
+    </div>
+    <div class="campaign-card-info">
+      {{ c.business_name }} · {{ c.category }} · {{ c.city }}
+    </div>
+    <div class="campaign-card-tags">
+      {% for tag in c.tags %}
+      <span class="tag-pill tag-{{ tag }}">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    <div class="campaign-card-meta">
+      <span>Created: {{ c.created }}</span>
+      <span>Scans: {{ c.scans }}</span>
+      <span>Reviews: {{ c.reviews }}</span>
+      <div class="campaign-card-actions">
+        <a href="/dashboard/campaigns/{{ c.id }}" class="btn btn-ghost btn-sm">Manage →</a>
+        <a href="/dashboard/qrcodes" class="btn btn-ghost btn-sm">QR ↓</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% if campaigns|length == 0 %}
+<div class="empty-state">
+  <div class="empty-state-icon">📣</div>
+  <h3>No campaigns yet</h3>
+  <p>Create your first campaign and get a QR code in 2 minutes.</p>
+  <a href="/dashboard/campaigns/new" class="btn btn-primary">+ Create Campaign</a>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Campaign Detail{% endblock %}
+{% block topbar_title %}Campaign Detail{% endblock %}
+{% block topbar_cta %}
+<button class="btn btn-ghost">⬇ Download QR</button>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Row -->
+<div class="detail-hero">
+  <div class="detail-avatar">{{ campaign.name[0] }}</div>
+  <div class="detail-hero-info">
+    <div class="detail-hero-name">{{ campaign.name }}</div>
+    <div class="detail-hero-sub">
+      {{ campaign.business_name }} · {{ campaign.category }} · {{ campaign.city }}
+    </div>
+    <div class="detail-hero-tags">
+      {% for tag in campaign.tags %}
+      <span class="tag-pill tag-{{ tag }}">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="detail-hero-right">
+    <span class="badge badge-{{ campaign.platform|lower }}">{{ campaign.platform }}</span>
+    <span class="badge badge-{{ campaign.status|lower }}">{{ campaign.status }}</span>
+    <span class="detail-created">Created {{ campaign.created }}</span>
+  </div>
+</div>
+
+<!-- Two Column Layout -->
+<div class="detail-columns">
+
+  <!-- LEFT COLUMN -->
+  <div class="detail-left">
+
+    <!-- Business Details Panel -->
+    <div class="detail-panel">
+      <div class="detail-panel-title">Business Details</div>
+      <dl>
+        <div class="detail-row"><dt>Business Name</dt><dd>{{ campaign.business_name }}</dd></div>
+        <div class="detail-row"><dt>Category</dt><dd>{{ campaign.category }}</dd></div>
+        <div class="detail-row"><dt>Platform</dt><dd>{{ campaign.platform }}</dd></div>
+        <div class="detail-row"><dt>Platform URL</dt><dd><a href="{{ campaign.url }}" style="color:var(--accent);">{{ campaign.url }}</a></dd></div>
+        <div class="detail-row"><dt>City</dt><dd>{{ campaign.city }}</dd></div>
+        <div class="detail-row"><dt>USP</dt><dd>{{ campaign.usp }}</dd></div>
+        <div class="detail-row"><dt>Description</dt><dd>{{ campaign.description }}</dd></div>
+        <div class="detail-row"><dt>Note to AI</dt><dd>{{ campaign.note_to_ai }}</dd></div>
+      </dl>
+      <button class="btn btn-ghost" style="margin-top:1rem;">Edit details</button>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="detail-stats-row">
+      <div class="detail-stat-card">
+        <div class="detail-stat-label">QR Scans</div>
+        <div class="detail-stat-value">{{ campaign.scans }}</div>
+      </div>
+      <div class="detail-stat-card">
+        <div class="detail-stat-label">Reviews Posted</div>
+        <div class="detail-stat-value">{{ campaign.reviews }}</div>
+      </div>
+      <div class="detail-stat-card">
+        <div class="detail-stat-label">Avg. Stars</div>
+        <div class="detail-stat-value">{{ campaign.avg_stars }}</div>
+      </div>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="danger-zone">
+      <div class="danger-zone-title">Danger Zone</div>
+      <div class="danger-zone-item">
+        <div>
+          <div class="danger-zone-item-label">Pause Campaign</div>
+          <p>Temporarily stop collecting new reviews.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm">Pause</button>
+      </div>
+      <div class="danger-zone-item">
+        <div>
+          <div class="danger-zone-item-label">Delete Campaign</div>
+          <p>Permanently delete this campaign and all its data.</p>
+        </div>
+        <button class="btn btn-danger btn-sm">Delete</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="detail-right">
+
+    <!-- QR Code Panel -->
+    <div class="qr-panel">
+      <div class="qr-panel-title">Your QR Code</div>
+      <div class="qr-placeholder">QR Code</div>
+      <div class="qr-url-box">
+        <input type="text" value="revify.app/review/sharmas-bakery" readonly id="qr-url-input" />
+        <button id="copy-url-btn" title="Copy URL">📋</button>
+      </div>
+      <div class="qr-buttons">
+        <button class="btn btn-ghost">⬇ Download PNG</button>
+        <button class="btn btn-ghost">🖨 Print QR</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

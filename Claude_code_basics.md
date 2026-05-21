@@ -46,3 +46,26 @@
 - can create Mantually CLAUDE.ms
 - using /init
 - /init useful in starting, new project and less knowns person
+
+# Spec driven Devlopment
+- Problem : Vibe coding -> no planning, build software using ai assitnant, and in experimental way
+- Vibe coding : Lose Control, ai making DM, fast but now right
+
+## Spec Drivent Development
+- using detailed spec docs 
+- all dev from spec documents
+
+## Spec Doc Lose format
+- problem statement (WHY)
+- fucntion requirment (WHAT We will Deliver)
+- API Contracts ( input, output, data shape)
+- Contraints
+- Edge Casses and error Handling
+- Accepatnace Critria
+
+## Spec Driven Devlopment Workflow
+- SPEC (Not tech) -> review -> Design (technical design plan)-> review -> Task (small tech task , upload on jira like s/w) -> Build -> validate
+
+# Plan Mode
+- during plan mode, many agents read the code
+- Only read. not write

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Dashboard{% endblock %} — Revify</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+</head>
+<body>
+  <div class="dashboard-shell">
+
+    <!-- ── SIDEBAR ──────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <a href="/dashboard" class="sidebar-logo">Revify<span class="dot">.</span></a>
+
+      <nav class="sidebar-nav">
+        <a href="/dashboard" class="{% if active_page == 'overview' %}active{% endif %}">
+          <span class="nav-icon">📊</span> Overview
+        </a>
+        <a href="/dashboard/campaigns" class="{% if active_page == 'campaigns' %}active{% endif %}">
+          <span class="nav-icon">📣</span> Campaigns
+        </a>
+        <a href="/dashboard/qrcodes" class="{% if active_page == 'qrcodes' %}active{% endif %}">
+          <span class="nav-icon">📲</span> QR Codes
+        </a>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="sidebar-user-name">Rahul S.</div>
+        <span class="sidebar-user-plan">Growth</span>
+        <br>
+        <a href="/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- ── MAIN AREA ────────────────────────────────────── -->
+    <div class="main-area">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-title">{% block topbar_title %}Dashboard{% endblock %}</div>
+        <div class="topbar-cta">{% block topbar_cta %}{% endblock %}</div>
+      </header>
+
+      <!-- Page content -->
+      <main class="page-content">
+        {% block content %}{% endblock %}
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toast-icon"></span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
