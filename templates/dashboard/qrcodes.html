@@ -1,0 +1,20 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}All QR Codes{% endblock %}
+{% block topbar_title %}All QR Codes{% endblock %}
+{% block topbar_cta %}{% endblock %}
+
+{% block content %}
+<div class="qr-grid">
+  {% for c in campaigns %}
+  <div class="qr-card">
+    <div class="qr-card-name">{{ c.name }}</div>
+    <div class="qr-card-badge">
+      <span class="badge badge-{{ c.platform|lower }}">{{ c.platform }}</span>
+    </div>
+    <div class="qr-card-image">QR Code</div>
+    <button class="btn btn-ghost btn-full">⬇ Download</button>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

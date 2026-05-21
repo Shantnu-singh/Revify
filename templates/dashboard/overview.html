@@ -1,0 +1,82 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Overview{% endblock %}
+{% block topbar_title %}Overview{% endblock %}
+{% block topbar_cta %}
+<a href="/dashboard/campaigns/new" class="btn btn-primary">+ New Campaign</a>
+{% endblock %}
+
+{% block content %}
+<!-- Stat Cards -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-card-icon">📣</div>
+    <div class="stat-card-label">Total Campaigns</div>
+    <div class="stat-card-value">3</div>
+    <div class="stat-card-caption">All time</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-card-icon">⭐</div>
+    <div class="stat-card-label">Reviews Collected</div>
+    <div class="stat-card-value">47</div>
+    <div class="stat-card-caption">Across all campaigns</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-card-icon">📈</div>
+    <div class="stat-card-label">Avg. Star Rating</div>
+    <div class="stat-card-value">4.6</div>
+    <div class="stat-card-caption">Last 30 days</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-card-icon">📲</div>
+    <div class="stat-card-label">QR Scans</div>
+    <div class="stat-card-value">123</div>
+    <div class="stat-card-caption">Total scans</div>
+  </div>
+</div>
+
+{% if campaigns|length == 0 %}
+<!-- Empty State -->
+<div class="empty-state">
+  <div class="empty-state-icon">📣</div>
+  <h3>No campaigns yet</h3>
+  <p>Create your first campaign and get a QR code in 2 minutes.</p>
+  <a href="/dashboard/campaigns/new" class="btn btn-primary">+ Create Campaign</a>
+</div>
+{% else %}
+<!-- Recent Campaigns -->
+<h2 class="section-heading">Recent Campaigns</h2>
+<div class="campaigns-row">
+  {% for c in campaigns[:3] %}
+  <div class="campaign-card" data-name="{{ c.name|lower }}">
+    <div class="campaign-card-header">
+      <div class="campaign-avatar">{{ c.name[0] }}</div>
+      <div class="campaign-card-name">{{ c.name }}</div>
+      <div class="campaign-card-badges">
+        <span class="badge badge-{{ c.platform|lower }}">{{ c.platform }}</span>
+        <span class="badge badge-{{ c.status|lower }}">{{ c.status }}</span>
+      </div>
+    </div>
+    <div class="campaign-card-info">
+      {{ c.business_name }} · {{ c.category }} · {{ c.city }}
+    </div>
+    <div class="campaign-card-tags">
+      {% for tag in c.tags %}
+      <span class="tag-pill tag-{{ tag }}">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    <div class="campaign-card-meta">
+      <span>Created: {{ c.created }}</span>
+      <span>Scans: {{ c.scans }}</span>
+      <span>Reviews: {{ c.reviews }}</span>
+      <div class="campaign-card-actions">
+        <a href="/dashboard/campaigns/{{ c.id }}" class="btn btn-ghost btn-sm">Manage →</a>
+        <a href="/dashboard/qrcodes" class="btn btn-ghost btn-sm">QR ↓</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<a href="/dashboard/campaigns" class="view-all-link">View all campaigns →</a>
+{% endif %}
+{% endblock %}

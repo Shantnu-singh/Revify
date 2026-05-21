@@ -51,12 +51,93 @@ def logout():
 
 
 # ─────────────────────────────────────────
-#  Protected dashboard (placeholder)
+#  Hardcoded campaign data (frontend stub)
+# ─────────────────────────────────────────
+CAMPAIGNS = [
+    {
+        "id": 1,
+        "name": "Sharma's Bakery — Main Branch",
+        "platform": "Google",
+        "status": "Active",
+        "business_name": "Sharma's Bakery",
+        "category": "Bakery",
+        "city": "Lajpat Nagar, Delhi",
+        "tags": ["food", "bakery", "delhi"],
+        "created": "Jan 12, 2025",
+        "scans": 38,
+        "reviews": 12,
+        "avg_stars": 4.8,
+        "url": "https://maps.google.com/sharmas-bakery",
+        "usp": "Best sourdough in South Delhi",
+        "description": "A family-run bakery known for fresh breads, custom cakes, and warm service.",
+        "note_to_ai": "Mention our free home delivery",
+    },
+    {
+        "id": 2,
+        "name": "Delhi Dental Clinic",
+        "platform": "Google",
+        "status": "Active",
+        "business_name": "Delhi Dental Clinic",
+        "category": "Dental",
+        "city": "Karol Bagh, Delhi",
+        "tags": ["health", "clinic", "delhi"],
+        "created": "Feb 3, 2025",
+        "scans": 51,
+        "reviews": 22,
+        "avg_stars": 4.7,
+        "url": "https://maps.google.com/delhi-dental-clinic",
+        "usp": "Painless dental care",
+        "description": "Modern dental clinic offering general and cosmetic dentistry with gentle care.",
+        "note_to_ai": "",
+    },
+    {
+        "id": 3,
+        "name": "Spice Garden Restaurant",
+        "platform": "Yelp",
+        "status": "Draft",
+        "business_name": "Spice Garden",
+        "category": "Restaurant",
+        "city": "Connaught Place, Delhi",
+        "tags": ["food", "restaurant"],
+        "created": "Mar 1, 2025",
+        "scans": 0,
+        "reviews": 0,
+        "avg_stars": 0,
+        "url": "https://yelp.com/biz/spice-garden",
+        "usp": "Authentic North Indian cuisine",
+        "description": "Fine dining restaurant serving authentic North Indian and Mughlai dishes.",
+        "note_to_ai": "",
+    },
+]
+
+
+# ─────────────────────────────────────────
+#  Dashboard routes (all GET, frontend stub)
 # ─────────────────────────────────────────
 @app.route("/dashboard")
-def dashboard():
-    # TODO: add login_required decorator
-    return render_template("dashboard.html")
+def dashboard_overview():
+    return render_template("dashboard/overview.html", campaigns=CAMPAIGNS, active_page="overview")
+
+
+@app.route("/dashboard/campaigns")
+def dashboard_campaigns():
+    return render_template("dashboard/campaigns.html", campaigns=CAMPAIGNS, active_page="campaigns")
+
+
+@app.route("/dashboard/campaigns/new")
+def dashboard_campaign_new():
+    return render_template("dashboard/wizard.html", active_page="campaigns")
+
+
+@app.route("/dashboard/campaigns/<int:campaign_id>")
+def dashboard_campaign_detail(campaign_id):
+    campaign = next((c for c in CAMPAIGNS if c["id"] == campaign_id), CAMPAIGNS[0])
+    return render_template("dashboard/campaign_detail.html", campaign=campaign, active_page="campaigns")
+
+
+@app.route("/dashboard/qrcodes")
+def dashboard_qrcodes():
+    return render_template("dashboard/qrcodes.html", campaigns=CAMPAIGNS, active_page="qrcodes")
 
 
 # ─────────────────────────────────────────

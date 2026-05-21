@@ -1,0 +1,257 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}New Campaign{% endblock %}
+{% block topbar_title %}New Campaign{% endblock %}
+{% block topbar_cta %}{% endblock %}
+
+{% block content %}
+<!-- Step Indicator -->
+<div class="wizard-steps-indicator">
+  <div class="wizard-step-dot current" data-step="1">1</div>
+  <div class="wizard-step-line"></div>
+  <div class="wizard-step-dot" data-step="2">2</div>
+  <div class="wizard-step-line"></div>
+  <div class="wizard-step-dot" data-step="3">3</div>
+  <div class="wizard-step-line"></div>
+  <div class="wizard-step-dot" data-step="4">4</div>
+  <div class="wizard-step-line"></div>
+  <div class="wizard-step-dot" data-step="5">5</div>
+</div>
+
+<!-- Step 1: Campaign Basics -->
+<div class="wizard-step active" data-step="1">
+  <h2 class="wizard-step-title">Campaign Basics</h2>
+  <p class="wizard-step-desc">Give your campaign a name and choose a platform.</p>
+
+  <div class="form-group">
+    <label class="form-label">Campaign Name</label>
+    <input type="text" class="form-input" id="campaign-name" placeholder="e.g. Sharma's Bakery — Main Branch" />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Platform</label>
+    <div class="platform-cards">
+      <label class="platform-card selected" data-platform="Google">
+        <input type="radio" name="platform" value="Google" checked />
+        <div class="platform-card-icon">🔵</div>
+        <div class="platform-card-title">Google Reviews</div>
+        <div class="platform-card-desc">Most widely used in India</div>
+      </label>
+      <label class="platform-card" data-platform="Yelp">
+        <input type="radio" name="platform" value="Yelp" />
+        <div class="platform-card-icon">⭕</div>
+        <div class="platform-card-title">Yelp Reviews</div>
+        <div class="platform-card-desc">Popular for restaurants & services</div>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Tags</label>
+    <div class="tag-checkbox-grid">
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="food" /> food</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="bakery" /> bakery</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="restaurant" /> restaurant</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="cafe" /> cafe</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="health" /> health</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="clinic" /> clinic</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="salon" /> salon</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="beauty" /> beauty</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="retail" /> retail</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="services" /> services</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="delhi" /> delhi</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="mumbai" /> mumbai</label>
+      <label class="tag-checkbox"><input type="checkbox" name="tags" value="bangalore" /> bangalore</label>
+    </div>
+  </div>
+
+  <div class="wizard-nav">
+    <div></div>
+    <button class="btn btn-primary wizard-next" data-next="2">Next →</button>
+  </div>
+</div>
+
+<!-- Step 2: Business Link -->
+<div class="wizard-step" data-step="2">
+  <h2 class="wizard-step-title">Business Link</h2>
+  <p class="wizard-step-desc">Paste the link to your business on the chosen platform.</p>
+
+  <div class="form-group">
+    <label class="form-label">Platform URL</label>
+    <input type="text" class="form-input" id="platform-url" placeholder="https://maps.google.com/..." />
+    <div class="helper-tip">
+      To find your Google link, search your business on Google Maps → Share → Copy link.
+    </div>
+  </div>
+
+  <div class="wizard-nav">
+    <button class="btn btn-ghost wizard-back" data-back="1">← Back</button>
+    <button class="btn btn-primary wizard-next" data-next="3">Next →</button>
+  </div>
+</div>
+
+<!-- Step 3: Business Details -->
+<div class="wizard-step" data-step="3">
+  <h2 class="wizard-step-title">Business Details</h2>
+  <p class="wizard-step-desc">Tell us about your business. This helps AI write better reviews.</p>
+
+  <div class="form-group">
+    <label class="form-label">Business Name</label>
+    <input type="text" class="form-input" id="business-name" placeholder="e.g. Sharma's Bakery" />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Category</label>
+    <select class="form-select" id="business-category">
+      <option value="">Select a category...</option>
+      <optgroup label="Food & Beverage">
+        <option value="Bakery">Bakery</option>
+        <option value="Restaurant">Restaurant</option>
+        <option value="Cafe">Cafe</option>
+        <option value="Catering">Catering</option>
+      </optgroup>
+      <optgroup label="Health">
+        <option value="Dental">Dental</option>
+        <option value="General Physician">General Physician</option>
+        <option value="Pharmacy">Pharmacy</option>
+        <option value="Gym">Gym</option>
+      </optgroup>
+      <optgroup label="Beauty">
+        <option value="Hair Salon">Hair Salon</option>
+        <option value="Spa">Spa</option>
+        <option value="Nail Studio">Nail Studio</option>
+      </optgroup>
+      <optgroup label="Retail">
+        <option value="Clothing">Clothing</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Grocery">Grocery</option>
+      </optgroup>
+      <optgroup label="Services">
+        <option value="Tailor">Tailor</option>
+        <option value="Photographer">Photographer</option>
+        <option value="Travel Agent">Travel Agent</option>
+      </optgroup>
+      <optgroup label="Education">
+        <option value="Tuition Centre">Tuition Centre</option>
+        <option value="Coaching Institute">Coaching Institute</option>
+      </optgroup>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Description</label>
+    <textarea class="form-textarea" id="business-description" rows="4" maxlength="400"
+              placeholder="What makes your business special? Customers will see this."></textarea>
+    <div class="char-counter"><span id="desc-counter">0</span>/400</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">City / Locality</label>
+    <input type="text" class="form-input" id="business-city" placeholder="e.g. Lajpat Nagar, Delhi" />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">USP <span style="color:var(--muted);font-weight:300;">(optional)</span></label>
+    <input type="text" class="form-input" id="business-usp" placeholder="e.g. Best sourdough in South Delhi" />
+  </div>
+
+  <div class="wizard-nav">
+    <button class="btn btn-ghost wizard-back" data-back="2">← Back</button>
+    <button class="btn btn-primary wizard-next" data-next="4">Next →</button>
+  </div>
+</div>
+
+<!-- Step 4: Sample Reviews -->
+<div class="wizard-step" data-step="4">
+  <h2 class="wizard-step-title">Sample Reviews</h2>
+  <p class="wizard-step-desc">Here are some recent reviews from your platform.</p>
+
+  <div class="review-card">
+    <div class="review-card-stars">⭐⭐⭐⭐⭐</div>
+    <div class="review-card-text">"The pastries here are exceptional — flaky, buttery, and made with care. Will definitely be back!"</div>
+    <div class="review-card-meta">Priya M. · Google · 2 weeks ago</div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-card-stars">⭐⭐⭐⭐</div>
+    <div class="review-card-text">"Fresh bread and friendly staff. The sourdough was great. Will come back."</div>
+    <div class="review-card-meta">Rohan D. · Google · 1 month ago</div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-card-stars">⭐⭐⭐⭐⭐</div>
+    <div class="review-card-text">"Ordered a custom cake and they nailed every detail. Great price, beautiful work."</div>
+    <div class="review-card-meta">Anjali K. · Google · 3 weeks ago</div>
+  </div>
+
+  <div class="form-group" style="margin-top:1.5rem;">
+    <label class="form-label">Note to AI</label>
+    <textarea class="form-textarea" id="ai-note" rows="2" maxlength="200"
+              placeholder='e.g. "Mention our free delivery" or "Don\'t mention parking"'></textarea>
+    <div class="char-counter"><span id="note-counter">0</span>/200</div>
+  </div>
+
+  <div class="wizard-nav">
+    <button class="btn btn-ghost wizard-back" data-back="3">← Back</button>
+    <button class="btn btn-primary wizard-next" data-next="5">Next →</button>
+  </div>
+</div>
+
+<!-- Step 5: Review & Launch -->
+<div class="wizard-step" data-step="5">
+  <h2 class="wizard-step-title">Review & Launch</h2>
+  <p class="wizard-step-desc">Double-check everything before launching your campaign.</p>
+
+  <div class="summary-card">
+    <div class="summary-card-header">
+      <div class="summary-card-title">Campaign Info</div>
+      <span class="summary-edit-link" data-goto="1">Edit ✏</span>
+    </div>
+    <dl>
+      <div class="summary-row"><dt>Campaign Name</dt><dd id="sum-name">—</dd></div>
+      <div class="summary-row"><dt>Platform</dt><dd id="sum-platform">—</dd></div>
+      <div class="summary-row"><dt>Tags</dt><dd id="sum-tags">—</dd></div>
+    </dl>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-card-header">
+      <div class="summary-card-title">Business Link</div>
+      <span class="summary-edit-link" data-goto="2">Edit ✏</span>
+    </div>
+    <dl>
+      <div class="summary-row"><dt>Platform URL</dt><dd id="sum-url">—</dd></div>
+    </dl>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-card-header">
+      <div class="summary-card-title">Business Details</div>
+      <span class="summary-edit-link" data-goto="3">Edit ✏</span>
+    </div>
+    <dl>
+      <div class="summary-row"><dt>Business Name</dt><dd id="sum-biz-name">—</dd></div>
+      <div class="summary-row"><dt>Category</dt><dd id="sum-category">—</dd></div>
+      <div class="summary-row"><dt>Description</dt><dd id="sum-desc">—</dd></div>
+      <div class="summary-row"><dt>City</dt><dd id="sum-city">—</dd></div>
+      <div class="summary-row"><dt>USP</dt><dd id="sum-usp">—</dd></div>
+    </dl>
+  </div>
+
+  <div class="summary-card" id="sum-ai-note-card" style="display:none;">
+    <div class="summary-card-header">
+      <div class="summary-card-title">Note to AI</div>
+      <span class="summary-edit-link" data-goto="4">Edit ✏</span>
+    </div>
+    <dl>
+      <div class="summary-row"><dt>Note</dt><dd id="sum-ai-note">—</dd></div>
+    </dl>
+  </div>
+
+  <div class="wizard-nav" style="border-top:none;padding-top:0;">
+    <button class="btn btn-ghost wizard-back" data-back="4">← Back</button>
+    <button class="btn btn-primary btn-full" id="launch-btn" style="flex:1;">🚀 Launch Campaign</button>
+  </div>
+</div>
+{% endblock %}
