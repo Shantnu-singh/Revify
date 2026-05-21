@@ -69,3 +69,17 @@
 # Plan Mode
 - during plan mode, many agents read the code
 - Only read. not write
+
+## How to use Model Selection
+- Use better model for Plan Mode
+- Extended thinking ( enable )
+- /config thinking (True)
+- /effort (low medium and high / max)
+
+# Custom Slash Commands
+- simple promts
+- use for repeatable workflow
+- stored as markdown file in .claude/commands/
+- has two levels, user level and project level
+
+- Example /review , /commit , /test , /security-scan
